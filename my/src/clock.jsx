@@ -9,7 +9,12 @@ class Clock extends Component {
 		this.another = React.createRef()
 		this.changeStyle =  this.changeStyle.bind(this)
 	}
-	
+	componentDidMount() {
+		window.addEventListener('load', this.changeStyle);
+	}
+	componentWillUnmount() { 
+		window.removeEventListener('load', this.changeStyle) 
+	}
 	changeStyle() {
     // console.log(this.element)
 		const setDate = () => {
@@ -74,7 +79,6 @@ render() {
 					<div ref={this.other} className="hand min-hand"></div>
 					<div ref={this.another} className="hand second-hand"></div>
 				</div>
-				<button onClick = { this.changeStyle }>Cambiar color</button>
 			</div>
 		</div>
 	)
